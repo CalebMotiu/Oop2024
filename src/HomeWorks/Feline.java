@@ -43,6 +43,12 @@ public static void main(String[] args) throws SQLException {
 		psd.setString(1, breed);
 		psd.executeUpdate();
 		
+		String update = "UPDATE feline SET Weight = ? WHERE breed = ?";
+		PreparedStatement psu = conn.prepareStatement(update);
+		psu.setInt(1, 208);
+		psu.setString(2, breed);
+		psu.executeUpdate();
+		
 		ResultSet rs = stmt.executeQuery("select * from feline");
 		while(rs.next()) {
 			String breedPrint = rs.getString("Breed");

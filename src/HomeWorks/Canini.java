@@ -43,13 +43,20 @@ public static void main(String[] args) throws SQLException {
 		psd.setInt(1, 3);
 		psd.executeUpdate();
 		
+		String update = "UPDATE canini SET Weight = ? WHERE id = ?";
+		PreparedStatement psu = conn.prepareStatement(update);
+		psu.setInt(1, 38);
+		psu.setInt(2, 4);
+		psu.executeUpdate();
+		
 		ResultSet rs = stmt.executeQuery("select * from Canini");
 		while(rs.next()) {
+			String id = rs.getString("id");
 			String breedPrint = rs.getString("Breed");
 			String heightPrint = rs.getString("Height");
 			String weightPrint = rs.getString("weight");
 			
-			System.out.println(breedPrint + " | " + heightPrint + " | " + weightPrint);
+			System.out.println(id + " | " + breedPrint + " | " + heightPrint + " | " + weightPrint);
 		}
 		conn.close();
 	}
